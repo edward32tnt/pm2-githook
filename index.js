@@ -174,6 +174,12 @@ Worker.prototype.processRequest = function (req) {
 Worker.prototype.checkRequest = function checkRequest(targetApp, req) {
   var targetName = reqToAppName(req);
   switch (targetApp.service) {
+    case 'gitlab-old': {
+      if (!req.headers['x-gitlab-event']) {
+        return util.format('[%s] Received invalid request for app %s (no headers found)', new Date().toISOString(), targetName);
+      }
+      break;
+    }
     case 'gitlab': {
       if (!req.headers['x-gitlab-token']) {
         return util.format('[%s] Received invalid request for app %s (no headers found)', new Date().toISOString(), targetName);
