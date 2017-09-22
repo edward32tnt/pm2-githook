@@ -27,8 +27,9 @@ PM2 module to receive http webhook from github, execute pre/post hook and gracef
     - `prehook` is the shell command executed in the `cwd` **(care of this)** of the app after the `pull` and before the `gracefullReload`.
     - `posthook` is the shell command executed in the `cwd` **(care of this)** of the app after making the `gracefullReload`.
     - `service` is the service used to make the http call (`github` is the default)
-      - `github` : you'll need to set the same secret as defined in github 
+      - `github` : you'll need to set the same secret as defined in github
       - `gitlab` : you'll need to set the secret as the token defined in gitlab
+      - `gitlab-olb` : no need secret work with 'x-gitlab-event' set in headers
       - `jenkins` : you'll need to set the secret as the ip of the jenkins (can specify branch)
       - `bitbucket` : secret not needed, bitbucket ip range is inside the code (can specify branch)
       - `droneci` : you'll need to set the secret to match the `Authorization` header defined inside the [plugin](http://addons.drone.io/webhook/) (can specify branch)
